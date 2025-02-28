@@ -17,12 +17,6 @@ export const AI_MODEL_DISPLAY = {
     logo: '/providers/openai.webp',
     vision: true,
   },
-  'o3-mini': {
-    id: 'o3-mini',
-    name: 'o3 mini',
-    logo: '/providers/openai.webp',
-    vision: false,
-  },
 } as const;
 
 export type AIModel = keyof typeof AI_MODEL_DISPLAY;
@@ -32,17 +26,19 @@ export const availableModels = Object.values(AI_MODEL_DISPLAY);
 // OpenAI Client
 const openai = createOpenAI({
   apiKey: process.env.OPENAI_KEY!,
+  baseURL: 'https://api.cursorai.art/v1',
 });
 
 // Create model instances with configurations
 export function createModel(modelId: AIModel, apiKey?: string) {
   const client = createOpenAI({
     apiKey: apiKey || process.env.OPENAI_KEY!,
+    baseURL: 'https://api.cursorai.art/v1',
   });
 
   return client(modelId, {
     structuredOutputs: true,
-    ...(modelId === 'o3-mini' ? { reasoningEffort: 'medium' } : {}),
+    ...(modelId === 'gpt-4o' ? { reasoningEffort: 'medium' } : {}),
   });
 }
 
