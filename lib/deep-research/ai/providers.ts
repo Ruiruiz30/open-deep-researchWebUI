@@ -6,7 +6,7 @@ import { RecursiveCharacterTextSplitter } from './text-splitter';
 // Model Display Information
 export const AI_MODEL_DISPLAY = {
   'gpt-4o': {
-    id: 'gpt-4o',
+    id: 'gpt-4o-2024-08-06',
     name: 'GPT-4o',
     logo: '/providers/openai.webp',
     vision: true,
